@@ -4,7 +4,8 @@ interface QuestionObj {
     question: string,
     answer: string,
     dateCreated: string,
-    dateUpdated: string
+    dateUpdated: string,
+    onSave?: (updatedQuestion: QuestionObj) => void;
 }
 
 export default QuestionObj;
