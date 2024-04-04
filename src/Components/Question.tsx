@@ -45,7 +45,7 @@ const Question: FC<QuestionObj> = ({ id, question, answer, onSave, ...props }): 
               {/* <p className="py-4">{props.question}</p> */}
               <textarea 
                 id={"textarea_" + id.toString()} 
-                className="text-center py-6 rounded bg-white focus:border-teal-300 border-2 outline-none" 
+                className="text-center py-6 px-3 rounded bg-white focus:border-teal-300 border-2 outline-none w-11/12" 
                 placeholder="Input answer here"
                 value={updatedAnswer}
                 onChange={(event) => {
