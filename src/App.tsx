@@ -2,6 +2,7 @@ import { Dispatch, FC, useEffect, useState } from 'react'
 import './App.css'
 import Question from './Components/Question';
 import QuestionObj from './Interface/QuestionObj';
+import AnsweredQuestion from './Components/AnsweredQuestion';
 // import QuestionObj from './Interface/QuestionObj';
 
 const App: FC = () => {
@@ -117,7 +118,7 @@ const App: FC = () => {
                     Unanswered Questions
                     </div>
                     <div className="collapse-content"> 
-                    <ul className="bg-slate-200 shadow-md rounded-xl mx-auto max-w-lg flex flex-col">
+                    <ul className="shadow-md rounded-xl mx-auto max-w-lg flex flex-col">
                       {unansweredQuestions !== undefined && unansweredQuestions?.map((question, i) => <Question {...question} key={i} onSave={handleSave} />)}
                     </ul>
                     </div>
@@ -131,8 +132,8 @@ const App: FC = () => {
                   Answered Questions
                   </div>
                   <div className="collapse-content"> 
-                    <ul className="bg-white shadow-md rounded-xl mx-auto max-w-lg flex flex-col">
-                      {answeredQuestions !== undefined && answeredQuestions?.map((question, i) => <Question {...question}  key={i} />)}
+                    <ul className="shadow-md rounded-xl mx-auto max-w-lg flex flex-col">
+                      {answeredQuestions !== undefined && answeredQuestions?.map((question, i) => <AnsweredQuestion {...question}  key={i} />)}
                     </ul>
                   </div>
                 </div>
