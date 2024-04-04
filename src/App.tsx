@@ -82,9 +82,6 @@ const App: FC = () => {
       .then(() => {
         populateQuestionsFromAPI(); //Populates the question list
       })
-
-    console.log("onSave: Question");
-    console.log(updatedQuestion);
   }
 
   const putDataToAPI = async (url = "", data = {}): Promise<object> => {
