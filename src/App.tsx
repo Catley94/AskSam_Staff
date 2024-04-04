@@ -45,7 +45,7 @@ const App: FC = () => {
           if(!question.answered) unansweredQuestions.push(question);
         })
         setUnansweredQuestions(unansweredQuestions);
-        setAnweredQuestions(answeredQuestions);
+        setAnweredQuestions(answeredQuestions.reverse());
       })
       .catch((error) => {
         console.error(error);
