@@ -1,7 +1,7 @@
 import { FC } from "react";
 import QuestionObj from "../Interface/QuestionObj";
 
-const AnsweredQuestion: FC<QuestionObj> = ({ id, question, answer, onSave, ...props }): JSX.Element => {
+const AnsweredQuestion: FC<QuestionObj> = ({ id, question, answer }): JSX.Element => {
 
   return (
     <>
