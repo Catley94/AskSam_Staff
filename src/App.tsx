@@ -22,6 +22,7 @@ const App: FC = () => {
 
   */
 
+  const AskSamAPILocation = "https://asksamapi.azurewebsites.net/questions";
 
   const header: string = "Ask Sam";
   
@@ -56,7 +57,7 @@ const App: FC = () => {
 
     let _questionList: QuestionObj[] = [];
 
-    const response = await fetch(`http://localhost:5125/questions/allquestions`, {
+    const response = await fetch(`${AskSamAPILocation}/allquestions`, {
       method: "GET"
     })
     await response.json()
@@ -78,7 +79,7 @@ const App: FC = () => {
       type: "General"
     }
 
-    putDataToAPI(`http://localhost:5125/questions/${updatedQuestion.id}`, data)
+    putDataToAPI(`${AskSamAPILocation}/${updatedQuestion.id}`, data)
       .then(() => {
         populateQuestionsFromAPI(); //Populates the question list
       })
