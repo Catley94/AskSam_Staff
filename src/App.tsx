@@ -24,6 +24,8 @@ const App: FC = () => {
 
   const AskSamAPILocation = "https://asksamapi.azurewebsites.net/questions";
 
+  const msToCheckForNewQuestions = 10000;
+
   const header: string = "Ask Sam";
   
   const [answeredQuestions, setAnweredQuestions]: [QuestionObj[] | undefined, Dispatch<QuestionObj[] | undefined>] = useState<QuestionObj[]>();
@@ -32,6 +34,10 @@ const App: FC = () => {
 
   useEffect(() => {
     populateQuestionsFromAPI();
+
+    setInterval(() => {
+      populateQuestionsFromAPI();
+    }, msToCheckForNewQuestions);
   }, []); // The empty array ensures this effect runs only on initial render
 
 
@@ -62,6 +68,8 @@ const App: FC = () => {
     })
     await response.json()
     .then((_questions) => {
+      document.getElementById("loading_unanswered")?.classList.add("hidden");
+      document.getElementById("loading_answered")?.classList.add("hidden");
       _questionList = _questions;
     })
     .catch((error) => {
@@ -117,11 +125,13 @@ const App: FC = () => {
                     </div>
                     <div className="collapse-content"> 
                     <ul className="shadow-md rounded-xl mx-auto max-w-lg flex flex-col">
+                      <div className="">
+                        <span id="loading_unanswered" className="loading loading-dots loading-lg"></span>
+                      </div>
                       {unansweredQuestions !== undefined && unansweredQuestions?.map((question, i) => <Question {...question} key={i} onSave={handleSave} />)}
                     </ul>
                     </div>
                   </div>
-                
             </div>
             <div className="px-3">
                 <div className="collapse collapse-arrow bg-slate-300 text-center">
@@ -131,6 +141,9 @@ const App: FC = () => {
                   </div>
                   <div className="collapse-content"> 
                     <ul className="shadow-md rounded-xl mx-auto max-w-lg flex flex-col">
+                    <div className="">
+                      <span id="loading_answered" className="loading loading-dots loading-lg"></span>
+                    </div>
                       {answeredQuestions !== undefined && answeredQuestions?.map((question, i) => <AnsweredQuestion {...question}  key={i} />)}
                     </ul>
                   </div>
