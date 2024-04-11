@@ -1,5 +1,5 @@
 import { FC } from "react";
-import QuestionObj from "../Interface/QuestionObj";
+import QuestionObj from "../Interface/IQuestion";
 
 const AnsweredQuestion: FC<QuestionObj> = ({ id, question, answer }): JSX.Element => {
 
