@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { supabase } from "../API/SupabaseAPI";
 import { Link, useNavigate } from "react-router-dom";
 import ISignUp from "../Interface/ISignUp";
+import Header from "../Components/Header";
 
 const SignUp: FC = (): JSX.Element => {
 
@@ -53,35 +54,42 @@ const SignUp: FC = (): JSX.Element => {
 
     return (
         <>
-            <form onSubmit={onHandleSubmit}>
-                <input 
-                    className="border-2 border-teal-300 bg-slate-300 text-slate-700 p-2 text-center"
-                    placeholder="Full name"
-                    name="fullName"
-                    onChange={onHandleChange}
-                />
+            <div className="flex flex-col justify-center items-center h-screen">
+                <div className="mb-10">
+                    <Header />
+                </div>
+                <form
+                    className="flex"
+                    onSubmit={onHandleSubmit}>
+                    <input 
+                        className="input mx-1 bg-slate-50 rounded-xl shadow-md shadow-teal-200 p-3 w-1/2 text-center focus:border-2 focus:border-teal-300 focus:outline-none"
+                        placeholder="Full name"
+                        name="fullName"
+                        onChange={onHandleChange}
+                    />
 
-                <input 
-                    className="border-2 border-teal-300 bg-slate-300 text-slate-700 p-2 text-center"
-                    placeholder="Email"
-                    name="email"
-                    onChange={onHandleChange}
-                />
+                    <input 
+                        className="input mx-1 bg-slate-50 rounded-xl shadow-md shadow-teal-200 p-3 w-1/2 text-center focus:border-2 focus:border-teal-300 focus:outline-none"
+                        placeholder="Email"
+                        name="email"
+                        onChange={onHandleChange}
+                    />
 
-                <input 
-                    className="border-2 border-teal-300 bg-slate-300 text-slate-700 p-2 text-center"
-                    placeholder="password"
-                    name="password"
-                    type="password"
-                    onChange={onHandleChange}
-                />
-                <button
-                    className="btn btn-accent" 
-                    type="submit"
-                    >Submit</button>
+                    <input 
+                        className="input mx-1 bg-slate-50 rounded-xl shadow-md shadow-teal-200 p-3 w-1/2 text-center focus:border-2 focus:border-teal-300 focus:outline-none"
+                        placeholder="Password"
+                        name="password"
+                        type="password"
+                        onChange={onHandleChange}
+                    />
+                    <button
+                        className="btn btn-accent mx-1" 
+                        type="submit"
+                        >Submit</button>
 
-            </form>
-            <p>Already have an account? <Link to="/">Login</Link></p>
+                </form>
+                <div><p className="text-center m-3 italic text-slate-500">Don't have an account? <Link to={"/"}><span className="font-semibold">Sign In</span></Link></p></div>
+            </div>
         </>
     )
 }

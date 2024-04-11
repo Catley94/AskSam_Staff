@@ -3,6 +3,7 @@ import Question from '../Components/Question';
 import QuestionObj from '../Interface/IQuestion';
 import AnsweredQuestion from '../Components/AnsweredQuestion';
 import { useNavigate } from 'react-router-dom';
+import Header from '../Components/Header';
 // import QuestionObj from './Interface/QuestionObj';
 
 const AnswerQuestions: FC = () => {
@@ -25,8 +26,6 @@ const AnswerQuestions: FC = () => {
   const AskSamAPILocation = "https://asksamapi.azurewebsites.net/questions";
 
   const msToCheckForNewQuestions = 10000;
-
-  const header: string = "Ask Sam";
   
   const [answeredQuestions, setAnweredQuestions]: [QuestionObj[] | undefined, Dispatch<QuestionObj[] | undefined>] = useState<QuestionObj[]>();
   const [unansweredQuestions, setUnansweredQuestions]: [QuestionObj[] | undefined, Dispatch<QuestionObj[] | undefined>] = useState<QuestionObj[]>();
@@ -126,7 +125,7 @@ const AnswerQuestions: FC = () => {
           >Logout</button>
       </div>
       <div id="askSamContainer" className="text-center py-12 bg-slate-200 text-slate-600">
-          <h1 className="text-4xl font-semibold ">{header}</h1>
+          <Header />
           <div className="flex bg-white rounded-xl mx-auto m-6 shadow-md max-w-3xl">  
           </div>
           <div className="flex justify-center">
