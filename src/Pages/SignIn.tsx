@@ -49,6 +49,17 @@ const SignIn: FC<any> = ({setToken}): JSX.Element => {
       checkIfLoginWasSuccessful(error, data, setToken, navigateToURL);  
   }
 
+  const checkIfLoginWasSuccessful = (error: any, data: any, setToken: any, navigateToURL: any) => {
+    if (error) {
+      alert(error);
+    } else if (data) {
+      console.log("Logged in!");
+      console.log(data);
+      setToken(data);
+      navigateToURL("/answerquestions");
+    }
+  }
+
     return (
       <>
         <div className="flex flex-col justify-center items-center h-screen">
@@ -63,17 +74,6 @@ const SignIn: FC<any> = ({setToken}): JSX.Element => {
         </div>
       </>
     )
-}
-
-function checkIfLoginWasSuccessful(error: any, data: any, setToken: any, navigateToURL: any) {
-  if (error) {
-    alert(error);
-  } else if (data) {
-    console.log("Logged in!");
-    console.log(data);
-    setToken(data);
-    navigateToURL("/answerquestions");
-  }
 }
 
 export default SignIn;
