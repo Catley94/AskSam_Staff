@@ -21,6 +21,8 @@ const App: FC = () => {
         React sends PUT request with question and answer to DB
 
   */
+  const testkey = process.env.TEST_KEY;
+  console.log(testkey);
 
   const AskSamAPILocation = "https://asksamapi.azurewebsites.net/questions";
 
