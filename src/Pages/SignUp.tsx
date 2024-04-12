@@ -41,14 +41,12 @@ const SignUp: FC = (): JSX.Element => {
             }
           });
 
-        if(data) {
-            console.log("Check your email for verification link");
-            console.log(data);
+        if(error) {
+            alert(error);
+        } else if(data) {
+            document.getElementById("verificationNotification")?.classList.remove("hidden");
         }
 
-        if(error) {
-            console.error(error);
-        }
     }
 
 
@@ -57,6 +55,10 @@ const SignUp: FC = (): JSX.Element => {
             <div className="flex flex-col justify-center items-center h-screen">
                 <div className="mb-10">
                     <Header />
+                </div>
+                <div id="verificationNotification" role="alert" className="flex alert alert-info m-6 w-1/2 justify-center hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>A verification link has just been sent to your email.</span>
                 </div>
                 <form
                     className="flex"
