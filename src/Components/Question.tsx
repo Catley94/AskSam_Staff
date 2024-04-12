@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import QuestionObj from "../Interface/QuestionObj";
+import QuestionObj from "../Interface/IQuestion";
 
 const Question: FC<QuestionObj> = ({ id, question, answer, onSave, ...props }): JSX.Element => {
 
