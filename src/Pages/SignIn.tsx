@@ -1,8 +1,10 @@
 import { FC, useEffect, useState } from "react";
 import { supabase } from "../API/SupabaseAPI";
 import ISignIn from "../Interface/ISignIn";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
+import LoginForm from "../Components/LoginForm";
+import AnonymousLoginForm from "../Components/AnonymousLoginForm";
 
 const SignIn: FC<any> = ({setToken}): JSX.Element => {
 
@@ -54,42 +56,8 @@ const SignIn: FC<any> = ({setToken}): JSX.Element => {
             <Header />
           </div>
           {!anonymousSignInEnabled ?
-            <div>
-            <form 
-              className="flex"
-              onSubmit={onHandleSubmit}>
-
-                    <input 
-                        className="input mx-1 bg-slate-50 rounded-xl shadow-md shadow-teal-200 p-3 w-1/2 text-center focus:border-2 focus:border-teal-300 focus:outline-none"
-                        placeholder="Email"
-                        name="email"
-                        onChange={onHandleChange}
-                    />
-
-                    <input 
-                        className="input mx-1  bg-slate-50 rounded-xl shadow-md shadow-teal-200 p-3 w-1/2 text-center focus:border-2 focus:border-teal-300 focus:outline-none"
-                        placeholder="Password"
-                        name="password"
-                        type="password"
-                        onChange={onHandleChange}
-                    />
-                    <button
-                        className="btn btn-accent mx-1" 
-                        type="submit"
-                        >Submit</button>
-            </form>
-            <div><p className="text-center m-3 italic text-slate-500">Don't have an account? <Link to={"/signup"}><span className="font-semibold">Sign Up</span></Link></p></div>
-          </div> :
-          <div className="flex flex-col">
-            <p className="text-center mb-6 italic text-slate-500">Anonymous Logins are enabled, sign in without a user or password!</p>
-            <div className="flex justify-center">
-              <button 
-                className="btn btn-accent mx-1"
-                onClick={onHandleAnonymousLogin}>Login</button>
-            </div>
-          </div>
-
-
+            <LoginForm onHandleSubmit={onHandleSubmit} onHandleChange={onHandleChange} /> :
+            <AnonymousLoginForm onHandleAnonymousLogin={onHandleAnonymousLogin} />
           }
           
         </div>
