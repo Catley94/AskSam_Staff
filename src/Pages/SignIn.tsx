@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { supabase } from "../API/SupabaseAPI";
 import ISignIn from "../Interface/ISignIn";
 import { Link, useNavigate } from "react-router-dom";
