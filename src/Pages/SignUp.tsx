@@ -6,6 +6,9 @@ import Header from "../Components/Header";
 
 const SignUp: FC = (): JSX.Element => {
 
+    const allFieldsEmptyError = "Please fill in all fields below.";
+    const invalidEmailError = "Please input a valid email.";
+
     const [formData, setFormData] = useState<ISignUp>({
         fullName: "",
         email: "",
@@ -31,24 +34,56 @@ const SignUp: FC = (): JSX.Element => {
 
     const onHandleSubmit = async(event: React.ChangeEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
-        const { data, error } = await supabase.auth.signUp({
-            email: formData.email,
-            password: formData.password,
-            options: {
-                data: {
-                   full_name: formData.fullName 
+        try {
+
+            if(isFormDataValid()) {
+                const { data, error } = await supabase.auth.signUp({
+                    email: formData.email,
+                    password: formData.password,
+                    options: {
+                        data: {
+                           full_name: formData.fullName 
+                        }
+                    }
+                });
+    
+                if(error) {
+                    alert(error);
+                } else if(data) {
+                    showElement(document.getElementById("verificationNotification"));
+                    hideElement(document.getElementById("errorNotification"));
                 }
             }
-          });
 
-        if(error) {
-            alert(error);
-        } else if(data) {
-            document.getElementById("verificationNotification")?.classList.remove("hidden");
         }
-
+        catch(error: any) {
+            const errorNotification: HTMLElement | null = document.getElementById("errorNotification");
+            const errorMessage: HTMLElement | null = document.getElementById("errorMessage");
+            if(errorNotification != null) {
+                if(errorMessage != null) {
+                    errorMessage.textContent = error;
+                    showElement(errorNotification);
+                }
+            }
+        }
     }
 
+    const isFormDataValid = (): boolean | ErrorConstructor  => {
+        if(formData.email.length === 0 || formData.password.length === 0 || formData.fullName.length === 0) {
+            throw Error(allFieldsEmptyError);
+        } else if(formData.email.indexOf("@") === -1) {
+            throw Error(invalidEmailError);
+        }
+        return true;
+    }
+
+    const showElement = (_htmlElement: HTMLElement | null): void => {
+        if(_htmlElement?.classList.contains("hidden")) _htmlElement?.classList.remove("hidden");
+    }
+
+    const hideElement = (_htmlElement: HTMLElement | null): void => {
+        if(!_htmlElement?.classList.contains("hidden")) _htmlElement?.classList.add("hidden");
+    }
 
     return (
         <>
@@ -60,6 +95,12 @@ const SignUp: FC = (): JSX.Element => {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span>A verification link has just been sent to your email.</span>
                 </div>
+
+                <div id="errorNotification" role="alert" className="flex alert alert-error m-6 w-1/2 justify-center hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span id="errorMessage">A verification link has just been sent to your email.</span>
+                </div>
+
                 <form
                     className="flex"
                     onSubmit={onHandleSubmit}>

@@ -14,7 +14,7 @@ const SignIn: FC<any> = ({setToken}): JSX.Element => {
     password: "",
   });
 
-  const anonymousSignInEnabled = true;
+  const [anonymousSignInEnabled, setAnonymousSignInEnabled] = useState<boolean>(false);
 
   const navigateToURL = useNavigate();
   
@@ -60,8 +60,23 @@ const SignIn: FC<any> = ({setToken}): JSX.Element => {
     }
   }
 
+  const onHandleToggleAnonymousSignIn = () => {
+    // console.log(event);
+    setAnonymousSignInEnabled(!anonymousSignInEnabled);
+  }
+
     return (
       <>
+        <div className="form-control flex items-center">
+          <label className="label cursor-pointer">
+            <span className="label-text mx-3 font-semibold text-slate-500">{anonymousSignInEnabled? "Disable Quick Sign In" : "Enable Quick Sign In"}</span> 
+            <input 
+              className="toggle toggle-accent mx-3"
+              type="checkbox" 
+              
+              onChange={onHandleToggleAnonymousSignIn} />
+          </label>
+        </div>
         <div className="flex flex-col justify-center items-center h-screen">
           <div className="mb-10">
             <Header />
