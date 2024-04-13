@@ -30,7 +30,7 @@ const LoginForm: FC<ILoginFormProps> = ({onHandleSubmit, onHandleChange}): JSX.E
                         type="submit"
                         >Submit</button>
             </form>
-            <div><p className="text-center m-3 italic text-slate-500">Don't have an account? <Link to={"/signup"}><span className="font-semibold">Sign Up</span></Link></p></div>
+            <div><p className="text-center m-3 italic text-slate-500 hover:text-teal-500">Don't have an account? <Link to={"/signup"}><span className="font-semibold">Sign Up</span></Link></p></div>
           </div>
     </>
   )

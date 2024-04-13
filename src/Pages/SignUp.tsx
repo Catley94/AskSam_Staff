@@ -131,7 +131,7 @@ const SignUp: FC = (): JSX.Element => {
                         >Submit</button>
 
                 </form>
-                <div><p className="text-center m-3 italic text-slate-500">Don't have an account? <Link to={"/"}><span className="font-semibold">Sign In</span></Link></p></div>
+                <div><p className="text-center m-3 italic text-slate-500">Don't have an account? <Link to={"/"}><span className="font-semibold hover:text-teal-500">Sign In</span></Link></p></div>
             </div>
         </>
     )
