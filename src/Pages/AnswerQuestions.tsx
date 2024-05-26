@@ -11,7 +11,7 @@ const AnswerQuestions: FC = () => {
   /*
     App Flow:
     Staff Loads the page
-      React Sends GET request to server to receive all qusetions
+      React Sends GET request to server to receive all questions
       React populates two collapsable lists
         Answered Questions (Collapsed)
         Unanswered Questions (Uncollapsed)
